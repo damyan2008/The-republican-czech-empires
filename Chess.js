@@ -140,6 +140,15 @@ function canGo(tosqr, canTake) {
 	}
 	white_1 = move % 2;      //1 ако белите са на ход, 0 - черните
 	black_1 = 1 - white_1; //1 ако черните са на ход, 0 - белите
+
+	if(currentTurn == "white"){
+		white_1 = 1;
+		black_1 = 0;
+	}else if(currentTurn == "black"){
+		white_1 = 0;
+		black_1 = 1;
+	}
+
 	player_now = dragValue.id[0]; //"W", ако е преместена бяла фигура, "B" - черна
 	if (white_1) player_other = "B";
 	if (black_1) player_other = "W";
