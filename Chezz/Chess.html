@@ -1,0 +1,29 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Modular Chess</title>
+  <link rel="stylesheet" href="Chess.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Chessboard container -->
+    <div id="chessboard"></div>
+
+    <!-- Promotion overlay (hidden by default) -->
+    <div id="promotion-overlay" class="overlay" hidden>
+      <div class="promo-dialog">
+        <button data-piece="queen">Queen</button>
+        <button data-piece="rook">Rook</button>
+        <button data-piece="bishop">Bishop</button>
+        <button data-piece="knight">Knight</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Your compiled JavaScript bundle -->
+  <script type = "module" src="./src/Chess.js"></script>
+</body>
+</html>
