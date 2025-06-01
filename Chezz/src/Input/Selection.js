@@ -1,4 +1,6 @@
 let selectedSquare = null;
+let legalMoves = [];
+
 import { generateLegalMoves } from '../Engine/MoveGen.js';
 
 export function initSelection(board, container, onMoveCallback) {
@@ -13,20 +15,26 @@ export function initSelection(board, container, onMoveCallback) {
       if (piece && piece.color === board.currentTurn) {
         
         selectedSquare = squareName;
+        legalMoves = generateLegalMoves(board, selectedSquare);
         squareEl.classList.add('highlight');
+        legalMoves.forEach((move) => {
+            const targetEl = container.querySelector(`[data-square="${move}"]`);
+            if(targetEl) targetEl.classList.add('highlight');
+        })
+
       }
     } 
     else {
-        const legalMoves = generateLegalMoves(board, selectedSquare);
         if(legalMoves.includes(squareName)) {
             if (board.makeMove(selectedSquare, squareName)) {
                 onMoveCallback(); // triggers re-render
             }
         }
-        document
+        container
             .querySelectorAll('.square.highlight')
             .forEach((el) => el.classList.remove('highlight'));
         selectedSquare = null;
+        legalMoves = [];
         }
   });
 }

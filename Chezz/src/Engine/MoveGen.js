@@ -70,8 +70,12 @@ export function generateLegalMoves(board, fromSquare) {
             if(outOfBounds(r,f)) break;
             const target = Board.indexToCoord(r, f);
             const targetPiece = board.get(target);
-            if(!targetPiece) moves.push(target);
-            else if(targetPiece.color != piece.color) {moves.push(target); break;}
+            if(targetPiece) {
+                if(targetPiece.color != piece.color) {moves.push(target); break;}
+                else if(targetPiece.color == piece.color) break;
+            }
+            else moves.push(target);
+            
         }
         console.log(moves);
     }
@@ -87,8 +91,11 @@ export function generateLegalMoves(board, fromSquare) {
             if(outOfBounds(r,f)) break;
             const target = Board.indexToCoord(r, f);
             const targetPiece = board.get(target);
-            if(!targetPiece) moves.push(target);
-            else if(targetPiece.color != piece.color) {moves.push(target); break;}
+            if(targetPiece) {
+                if(targetPiece.color != piece.color) {moves.push(target); break;}
+                else if(targetPiece.color == piece.color) break;
+            }
+            else moves.push(target);
         }
         console.log(moves);
     }
@@ -104,8 +111,11 @@ export function generateLegalMoves(board, fromSquare) {
             if(outOfBounds(r,f)) break;
             const target = Board.indexToCoord(r, f);
             const targetPiece = board.get(target);
-            if(!targetPiece) moves.push(target);
-            else if(targetPiece.color != piece.color) {moves.push(target); break;}
+            if(targetPiece) {
+                if(targetPiece.color != piece.color) {moves.push(target); break;}
+                else if(targetPiece.color == piece.color) break;
+            }
+            else moves.push(target);
         }
         console.log(moves);
     }
@@ -120,6 +130,25 @@ export function generateLegalMoves(board, fromSquare) {
         const targetPiece = board.get(target);
         if(!targetPiece) moves.push(target);
         else if(targetPiece.color != piece.color) moves.push(target);
+
+        if(!piece.hasmoved) {
+            const rc = piece.color == 'white' ? 0 : 7;
+            let fc = file;
+            const castleDirs = [-1, 1];
+            for(const [dir] of castleDirs) {
+                while(!outOfBounds(rc, fc)) {
+                    target = Board.indexToCoord(rc, fc);
+                    tPiece = board.get(target);
+                    if(!tPiece) {fc += 1 * dir; continue;}
+                    else if(tPiece.type === 'rook') {
+                        if(tPiece.hasmoved) break;
+                        moves.push(Board.indexToCoord(rc, fc + 2 * dir));
+                    }
+                    fc += 1 * dir;
+                }
+                fc = file;
+            }
+        }
     }
     console.log(moves);
   }

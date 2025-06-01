@@ -50,6 +50,7 @@ export class Board {
   makeMove(from, to) {
     const piece = this.get(from);
     if (!piece) return false;
+    if(!piece.hasMoved) piece.hasMoved = true;
 
     this.set(to, piece);
     this.set(from, null);
