@@ -1,0 +1,132 @@
+body {
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow-y: hidden;
+    background-color: #9e9e9e;
+}
+.ContentLink{
+    font-size: 3vh;
+    /*styling*/
+    color: #ffffff;
+    background-color: #E96245;
+    border: none;
+    padding-top: 1.875vh;
+    padding-bottom: 1.875vh;
+    padding-left: 2.5vh;
+    padding-right: 2.5vh;
+    margin-left: 74.8vw;
+    border-radius: 3vh;
+    cursor: pointer;
+    transition: background-color 0.5s;
+  }
+  .ContentLink:hover{
+    background-color: #ac4832;
+  }
+.W { 
+    background-color: #ffffff;
+}
+.B {
+  background-color: #c24529;
+}
+.square {
+    height: 12vh;
+    width: 12vh;
+    font-size:0px;
+    padding: 0px;
+    left: 26.5vw;
+    top: 2vh;
+    z-index: 1;
+    position: relative;
+  }
+.row {
+    display: flex;
+    position: relative;
+}
+#checkmark{
+    display: none;
+    position: absolute;
+    z-index: 4;
+    width: 2.7vh;
+    height: 2.7vh;
+}
+#PuzzleNum{
+    font-size: 14vh;
+    color: white;
+    font-weight: 700;
+    margin-left: 8vw;
+}
+#arrow_front{
+    display: inline;
+    width: 5vw;
+    height: 5vw;
+    cursor: pointer;
+}
+#arrow_back{
+    display: inline;
+    margin-left: 5vw;
+    margin-right: 80vw;
+    width: 5vw;
+    height: 5vw;
+    rotate: 180deg;
+    cursor: pointer;
+}
+#arrow_front:hover{
+    background-color: #272626;
+}
+#arrow_back:hover{
+    background-color: #272626;
+}
+.piece {
+    object-fit: cover;
+    cursor: pointer;
+    font-size: 0px;
+    height: 12vh;
+    width: 12vh;
+    /*transition: width 250ms ease, height 250ms ease;*/
+    position: absolute;
+    user-select: none;
+    z-index: 2;
+    /*display: inline-block;*/
+}
+.prPiece{
+    position: relative;
+    height: 23vh;
+    width: 23vh;
+    margin-left: 10.5vw;
+    top: 38.5vh;
+}
+.prPiece:hover{
+    background-color: black;
+    cursor: pointer;
+}
+#WPromotion{
+    width: 100vw;
+    height:100vh;
+    background-color: #272626;
+    opacity: 0%;
+    position: fixed;
+    z-index: 5;
+    /*justify-content: center;*/
+    pointer-events: none;
+}
+#BPromotion{
+    width: 100vw;
+    height:100vh;
+    background-color: #272626;
+    opacity: 0%;
+    position: fixed;
+    z-index: 5;
+    /*justify-content: center;*/
+    pointer-events: none;
+}
+@keyframes anim{
+    100%{
+        opacity:90%;
+    }
+}
+@keyframes revAnim{
+    100%{
+        opacity:0%;
+    }
+}
