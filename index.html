@@ -1,251 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chess Game UI</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Нашият Шах Отбор</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Simple modal styling for login/signup */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-      display: none;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      z-index: 3000;
+      padding: 40px;
+      min-height: 100vh;
     }
-    .modal {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      width: 320px;
-      box-shadow: 0 12px 24px rgba(0,0,0,0.3);
-      text-align: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      animation: fadeInDown 1s ease-in-out;
     }
-    .modal h2 {
-      margin-bottom: 16px;
+
+    p.subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #ddd;
+      animation: fadeInDown 1.2s ease-in-out;
     }
-    .modal input {
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
       width: 100%;
-      padding: 8px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 0.95rem;
+      max-width: 1000px;
+      animation: fadeInUp 1.5s ease-in-out;
     }
-    
-    .btn-primary {
-      background-color: #34a853;
-      color: white;
-      border: none;
+
+    .member {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
-    .btn-secondary {
-      background-color: #ccc;
-      color: #333;
+
+    .member:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.15);
     }
-    #loginMessage {
-      margin-top: 12px;
-      font-size: 0.9rem;
-      color: red;
-      min-height: 1.2em;
+
+    .member h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .role {
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="app-container">
-    <!-- Sidebar (Left) -->
-    <aside class="sidebar">
-      <h2>Friends List</h2>
-      <ul class="friends">
-        <li>Alice</li>
-        <li>Bob</li>
-        <li>Charlie</li>
-      </ul>
-      <button class="primary-btn">Play Game With</button>
-    </aside>
+  <h1>Нашият екип</h1>
+  <p class="subtitle">Добре дошли в официалната страница на отбора!</p>
 
-    <!-- Center Main Content -->
-    <main class="main-content">
-      <header class="top-bar">
-        <div class="user-actions">
-          <button class="secondary-btn" id="addFriendBtn">Add Friends</button>
-          <button class="secondary-btn" id="openLoginBtn">Sign Up / Log In</button>
-        </div>
-      </header>
-
-      <div class="game-area">
-        <div class="user-label" id="userLabel">User 1</div>
-        <div class="chess-board">CHESS BOARD</div>
-        <div class="user-label">User 2</div>
-      </div>
-    </main>
-
-    <!-- Chat (Right) -->
-    <aside class="chat" id="chatBox">
-      <div class="chat-header" id="chatHeader">💬 Chat (optional)</div>
-      <div class="chat-messages" id="chatMessages"></div>
-      <form id="chatForm" class="chat-input-area">
-        <input type="text" id="chatInput" placeholder="Type a message..." required />
-
-      </form>
-    </aside>
-  </div>
-
-  <!-- Add Friend Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <h2>Add a Friend</h2>
-      <input type="text" id="friendInput" placeholder="Enter username..." />
-      <button id="sendFriendRequest">Send Request</button>
-      <button class="close-modal" id="closeModal">Cancel</button>
-      <div id="requestStatus" class="status-msg"></div>
+  <div class="team">
+    <div class="member">
+      <h2>Иван Василев</h2>
+      <p class="role">Основател</p>
+    </div>
+    <div class="member">
+      <h2>Дамян Александров</h2>
+      <p class="role">Разработчик</p>
+    </div>
+    <div class="member">
+      <h2>Боян Царски</h2>
+      <p class="role">Разработчик</p>
+    </div>
+    <div class="member">
+      <h2>Слав Нанчев</h2>
+      <p class="role">Разработчик</p>
+    </div>
+    <div class="member">
+      <h2>Хикмет Аврвамов</h2>
+      <p class="role">Разработчик</p>
+    </div>
+    <div class="member">
+      <h2>Людмил Георгиев</h2>
+      <p class="role">Разработчик</p>
     </div>
   </div>
-
-  <!-- Login Modal -->
-  <div class="modal-overlay" id="loginModal">
-    <div class="modal">
-      <h2>Sign Up / Log In</h2>
-      <form id="loginForm">
-        <input type="text" id="loginUsername" placeholder="Username" required />
-        <input type="password" id="loginPassword" placeholder="Password" required />
-        <div>
-          <button type="submit" class="btn-primary">Log In</button>
-          <button type="button" class="btn-secondary" id="closeLoginModal">Cancel</button>
-        </div>
-      </form>
-      <div id="loginMessage"></div>
-    </div>
-  </div>
-
-  <!-- Scripts -->
-  <script>
-    // Drag chat
-    const dragElement = (element, dragHandle) => {
-      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-      dragHandle.onmousedown = dragMouseDown;
-
-      function dragMouseDown(e) {
-        e.preventDefault();
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-      }
-
-      function elementDrag(e) {
-        e.preventDefault();
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        element.style.top = (element.offsetTop - pos2) + "px";
-        element.style.left = (element.offsetLeft - pos1) + "px";
-      }
-
-      function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-      }
-    };
-
-    dragElement(document.getElementById("chatBox"), document.getElementById("chatHeader"));
-
-    // Chat functionality
-    const chatForm = document.getElementById("chatForm");
-    const chatInput = document.getElementById("chatInput");
-    const chatMessages = document.getElementById("chatMessages");
-
-    chatForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const message = chatInput.value.trim();
-      if (message !== "") {
-        const msgElem = document.createElement("div");
-        msgElem.className = "chat-message";
-        msgElem.textContent = message;
-        chatMessages.appendChild(msgElem);
-        chatInput.value = "";
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }
-    });
-
-    // Add Friend Modal functionality
-    const addFriendBtn = document.getElementById("addFriendBtn");
-    const modalOverlay = document.getElementById("modalOverlay");
-    const closeModal = document.getElementById("closeModal");
-    const sendFriendRequest = document.getElementById("sendFriendRequest");
-    const friendInput = document.getElementById("friendInput");
-    const requestStatus = document.getElementById("requestStatus");
-
-    addFriendBtn.addEventListener("click", () => {
-      modalOverlay.style.display = "flex";
-      friendInput.value = "";
-      requestStatus.textContent = "";
-    });
-
-    closeModal.addEventListener("click", () => {
-      modalOverlay.style.display = "none";
-    });
-
-    sendFriendRequest.addEventListener("click", () => {
-      const name = friendInput.value.trim();
-      if (name === "") {
-        requestStatus.textContent = "Please enter a username.";
-        requestStatus.style.color = "#d32f2f";
-      } else {
-        requestStatus.textContent = `Friend request sent to ${name}!`;
-        requestStatus.style.color = "#4caf50";
-        friendInput.value = "";
-      }
-    });
-
-    // Login Modal functionality
-    const openLoginBtn = document.getElementById("openLoginBtn");
-    const loginModal = document.getElementById("loginModal");
-    const closeLoginModal = document.getElementById("closeLoginModal");
-    const loginForm = document.getElementById("loginForm");
-    const loginMessage = document.getElementById("loginMessage");
-    const userLabel = document.getElementById("userLabel");
-
-    openLoginBtn.addEventListener("click", () => {
-      loginModal.style.display = "flex";
-      loginMessage.textContent = "";
-      loginForm.reset();
-    });
-
-    closeLoginModal.addEventListener("click", () => {
-      loginModal.style.display = "none";
-      loginMessage.textContent = "";
-    });
-
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const username = document.getElementById("loginUsername").value.trim();
-      const password = document.getElementById("loginPassword").value;
-
-      if (!username || !password) {
-        loginMessage.textContent = "Please fill out both fields.";
-        loginMessage.style.color = "#d32f2f";
-        return;
-      }
-
-      // Dummy authentication example:
-      if (username === "user" && password === "password") {
-        loginMessage.style.color = "#4caf50";
-        loginMessage.textContent = "Login successful!";
-        userLabel.textContent = username;
-        setTimeout(() => {
-          loginModal.style.display = "none";
-          loginMessage.textContent = "";
-        }, 1000);
-      } else {
-        loginMessage.style.color = "#d32f2f";
-        loginMessage.textContent = "Invalid username or password.";
-      }
-    });
-  </script>
 </body>
+
 </html>
